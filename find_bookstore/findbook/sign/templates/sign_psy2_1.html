@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block head %}
+<style type="text/css">
+    /* 제목용 폰트 */
+    /* @font-face {
+        font-family: 'InfinitySans-BoldA1';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        
+    }
+    p{font-family:"InfinitySans-BoldA1",serif;} */
+
+    /* 본문용 폰트 */
+    @font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    }
+    span{font-family:"MapoFlowerIsland",serif;}
+</style>
+<script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>  
+{% endblock %}
+
+{% block content %}
+{%load static%}
+<style>
+body{
+/* background-image:url("https://pbs.twimg.com/media/DNHbqKqUQAA9Y_l.jpg"); */
+background-color:#e5dcf3;
+}
+</style>
+
+<br><br>
+<h2 style="text-align: center; color:#2e3131; font-weight:bold;"><span>당신의 서점은 무엇일까요?</span></h2>
+<br><br>
+<div class="container" style="text-align: center;">
+    <main id="swup" class="transition-fade">
+    <div class="row">
+        <div class="col">
+            <h5><span>독서를 시작하기 전,</span></h5>
+            <h5><span>배경음악으로 들을 노래를 틀기로 합니다.</span></h5><img src="{%static '책읽는라이언.png'%}" width="300px" height="200px" alt="">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <h5><span>Q2. 카페에 혼자 앉아있는 당신은</span></h5> 
+            <h5><span>어떤 종류의 음악을 들으시겠습니까?</span></h5>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="row">
+        <div class="col-2">
+            
+        </div>
+        <div class="col-4 input-group">
+            <!-- <button type="button" class="btn btn-outline-primary"><a href="{% url 'sign_psy2' %}"><h5>1. 카페인을 위해 커피 마시기</h5></a></button> -->
+            <a href="{% url 'sign_psy3' %}" class="form-control" style="border-radius: 10px; background-color:#bd9fe7; color:white; font-family:MapoFlowerIsland;">1. 부드럽고 편안한 재즈</a>
+            <!-- 편안함 -->
+        </div>
+        <div class="col-4 input-group">
+            <!-- <button type="button" class="btn btn-outline-primary"><a href="{% url 'sign_psy2_1' %}"><h5>2. 낮잠자기</h5></a></button> -->
+            <a href="{% url 'sign_psy3_1' %}" class="form-control" style="border-radius: 10px; background-color:#bd9fe7; color:white; font-family:MapoFlowerIsland;">2. 바다가 생각나는 트로피컬한 음악</a>
+            <!-- 쾌적한 -->
+        </div>
+    </div>
+<br>
+<br>
+    <div class="row">
+        <div class="col-2">
+            
+        </div>
+        <div class="col-4 input-group">
+            <!-- <button type="button" class="btn btn-outline-primary"><a href="{% url 'sign_psy2_2' %}"><h5>3. 전신 스트레칭 하기</h5></a></button> -->
+            <a href="{% url 'sign_psy3_1' %}" class="form-control" style="border-radius: 10px; background-color:#bd9fe7; color:white; font-family:MapoFlowerIsland;">3. k-pop Top100 가요</a>
+            <!-- 즐거움 -->
+        </div>
+        <div class="col-4 input-group">
+            <!-- <button type="button" class="btn btn-outline-primary"><a href="{% url 'sign_psy2_3' %}"><h5>4. 간식거리를 챙기기</h5></a></button> -->
+            <a href="{% url 'sign_psy3' %}" class="form-control" style="border-radius: 10px; background-color:#bd9fe7; color:white; font-family:MapoFlowerIsland;">4. 카페에서 나오는 음악 듣기</a>
+            <!-- 심플 -->
+        </div>
+    </div>
+</main>
+</div>
+    
+{% endblock %}

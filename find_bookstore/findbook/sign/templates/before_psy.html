@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+
+
+<!-- head 에 적을 내용은 여기에 적으세요. -->
+{% block head %}
+<style>
+    html, body {
+  height: 100%;
+}
+
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  min-width: 600px;
+  min-height: 120px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #313133;
+  background: #d5b8ff;
+  background: linear-gradient(90deg, #d5b8ff 0%, #d5b8ff 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px #d5b8ff;
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+button::before {
+content: '';
+  border-radius: 2000px;
+  min-width: calc(600px + 12px);
+  min-height: calc(120px + 12px);
+  border: 6px solid #bf94fa;
+  box-shadow: 0 0 60px #d5b8ff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.button:hover, .button:focus {
+  color: #313133;
+  transform: translateY(-6px);
+}
+
+button:hover::before, button:focus::before {
+  opacity: 1;
+}
+
+button::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 100%;
+  border: 6px solid #db0a5b;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+button:hover::after, button:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 900px;
+    height: 900px;
+    opacity: 0;
+  }
+}
+
+@font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    }
+    span{
+        font-family:"MapoFlowerIsland",serif;
+        }
+</style>
+{% endblock %}
+
+<!-- body 에 적을 내용은 여기에 적으세요. -->    
+{% block content %}
+<div class="wrap">
+    <a style="color: #313133;" href="{% url 'sign_psy' %}"><button class="button"><span>
+      당신의 서점을 찾아보세요.
+    </span></button></button></a>
+</div>
+
+{% endblock %}
+
+
+
+
+

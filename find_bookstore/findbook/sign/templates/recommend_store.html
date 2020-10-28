@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style type="text/css">
+    /* 제목용 폰트 */
+    /* @font-face {
+        font-family: 'InfinitySans-BoldA1';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        
+    }
+    p{font-family:"InfinitySans-BoldA1",serif;} */
+
+    /* 본문용 폰트 */
+    @font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    }
+    span{
+        font-family:"MapoFlowerIsland",serif;
+        }
+
+    .col-3:hover{
+        filter: brightness(90%);
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+<style>
+    body{
+    /* background-image:url("https://pbs.twimg.com/media/DNHbqKqUQAA9Y_l.jpg"); */
+    background-color:#f3f0f8;
+    }
+    </style>
+{%load static%}
+<div class="container"></div>
+
+<div class="row" style="text-align: center; margin-top:5%; font-weight:bold; font-family:MapoFlowerIsland;">
+    <div class="col">
+        <h2 style="color: #2e3131"><strong><span><img src="{%static 'logo.png'%}" width="70px" height="70px" alt="">당신에게 어울리는 서점들이예요.</span></strong></h2>
+        <h4 style="color: #2e3131"><span>마음에 드시는 서점을 클릭해보세요.</span></h4>
+        <medium>
+        <span style="color:red;">*</span>모든 서점을 보고 싶다면?<span style="color:red;">*</span> -> <span><a href="{% url 'home' %}" style="color:#2e3131">모두 보기</a></span>
+        </medium>
+    </div>
+</div>
+
+    <div class="row" style="margin-top:5%; margin-left: 6%;">
+        {% for recommend_store in recommend_stores %}
+        <div class="col">
+            <div class="card">
+                <div class="card-header" style="font-size:18px; font-weight:bold; background-color: #ddc9fa; color:#2e3131;">
+                    <p><span>{{recommend_store.name}}</span></p>
+                </div>
+                <div class="card-body" style="color:#2e3131">
+                    <p><span>{{recommend_store.description}}</span></p>
+                </div>
+                <a href="{% url 'customer_notice' recommend_store.bookstore_id %}"><span>자세히 보기</span></a>
+            </div>
+        </div>
+        {% endfor %}
+
+        
+        
+        <div class="col">
+            
+        </div>
+        <div class="col">
+            
+        </div>
+    </div>
+
+</div>
+
+<br>
+
+
+{% endblock %}

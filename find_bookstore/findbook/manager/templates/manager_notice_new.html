@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<style>
+
+    body{
+        padding: 0px;
+        margin: 0px;
+        font-family:"MapoFlowerIsland",serif;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+
+<nav class="navbar fixed-top navbar-light " id="navbar_section" style="background-color: transparent;" >
+    <div>
+    <a class="navbar-brand" href="{% url 'customer_main' %}">
+        <svg id="e2372a95-2762-4539-bef0-676f8291b0ae" style="width: 110px;" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><style>.aeea27b1-6a36-436e-a3bb-95a0448364bd{fill:#d5b8ff;stroke:#d5b8ff;stroke-miterlimit:10;stroke-width:1.5px;fill-rule:evenodd;}.be59457e-4405-48b7-96d1-990b0a9442e5{fill:#fff;}</style></defs><title>독립서점</title><path class="aeea27b1-6a36-436e-a3bb-95a0448364bd" d="M86.15,14.63,52.1,2.39a6.39,6.39,0,0,0-3.75,0L16.47,14.61a2.58,2.58,0,0,0-1.81,2.46V95.86a1.11,1.11,0,0,0,1.47,1L50.22,85.63,86.56,97A1.11,1.11,0,0,0,88,95.89V17.1A2.57,2.57,0,0,0,86.15,14.63Z"/><path class="be59457e-4405-48b7-96d1-990b0a9442e5" d="M39.73,53.1H34.29v-.91h1.85l.19-.23V29.41h-.11L30.93,51.73H29.65L24.36,29.41h-.11V52l.18.23h2.08v.91H21.15v-.91H23l.19-.23V29.11L23,28.84H20.81V28h4.27l5.17,21.91h.15L35.61,28h4v.87H37.65l-.18.27V52l.18.23h2.08Z"/><path class="be59457e-4405-48b7-96d1-990b0a9442e5" d="M55.18,32h-1l-.11-3.1H49.93V52l.19.23H52.2v.91H46.76v-.91h1.85L48.8,52v-23H44.68L44.57,32h-1V28H55.18Z"/><path class="be59457e-4405-48b7-96d1-990b0a9442e5" d="M59.19,53.1v-.91H61l.19-.23V29.11L61,28.84H59V28h5.48v.87H62.55l-.19.27V52l.19.23h2.11v.91Z"/><path class="be59457e-4405-48b7-96d1-990b0a9442e5" d="M69.05,52.19H70.9l.19-.23V29.11l-.19-.27H68.82V28h5.93c3.37,0,4.76,2,4.76,6.43,0,4-1.28,5.28-2.87,5.81v.12c1.66.41,3.55,1.58,3.55,6.16s-1.51,6.61-4.87,6.61H69.05Zm5.74-12.28c2.34,0,3.59-1.43,3.59-5.44s-1.21-5.55-3.74-5.55H72.22v11Zm.42,12.24c2.6,0,3.85-1.32,3.85-5.7s-1.81-5.59-4.31-5.59H72.22v11l.19.27Z"/><path class="be59457e-4405-48b7-96d1-990b0a9442e5" d="M82.44,63.51H20.22a.56.56,0,0,1,0-1.11H82.44a.56.56,0,1,1,0,1.11Z"/></svg>
+    </a>
+    </div>
+        <div style="text-align: right;">
+            {% csrf_token %}
+            {% if request.user.is_authenticated %}
+            <a class="button is-right" href="#"><strong>마이페이지</strong></a>
+            <a class="button is-right" href="#"><strong>로그아웃</strong></a>
+            {% else %}     
+            <a class="button is-right" href="#"><strong>로그인</strong></a>
+            {% endif %}
+        </div>
+</nav>
+<br>
+
+<div class="row pt-5">
+    <div class="col-2">
+    </div>
+
+    <div class="col-8" style="font-size:40px; color:#9f5afd">
+        <strong>New Notice</strong>        
+    </div>
+    
+    <div class="col">
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-2">
+    </div>
+
+    <div class="col-8" style="font-size: large; text-align: right;">
+        <a href="{%url 'manager_main' %}" style="color: #9f5afd;"> Home </a>
+    </div>
+    
+    <div class="col">
+    </div>
+</div>
+
+<div class="row pt-4 pb-5">
+    <div class="col-2">
+    </div>
+
+    <div class="col-8 p-3" style="background-color:#efe3ff">
+        <form action="{%url 'manager_notice_create'  %}" method="POST">
+            {%csrf_token%}
+            <p><strong> 제목 </strong></p>
+            <input class="form-control" type="text" name="manager_notice_title">
+            <hr>
+            <p><strong> 내용 </strong></p>
+            <textarea class="form-control" name="manager_notice_body" rows="10" ></textarea>
+            <br>
+            <div class="text-right">
+                <button type="submit" class="btn btn-outline-light" style="color: #9f5afd;">Save</button>
+            </div>
+        </form>
+    </div>
+    
+    <div class="col">
+    </div>
+</div>
+
+
+
+
+{% endblock %}

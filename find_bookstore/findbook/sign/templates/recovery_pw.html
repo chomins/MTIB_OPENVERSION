@@ -1,0 +1,193 @@
+{% extends 'base.html' %}
+
+
+<!-- head 에 적을 내용은 여기에 적으세요. -->
+{% block head %}
+<style type="text/css">
+    /* 제목용 폰트 */
+    /* @font-face {
+        font-family: 'InfinitySans-BoldA1';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        
+    }
+    p{font-family:"InfinitySans-BoldA1",serif;} */
+
+    /* 본문용 폰트 */
+    @font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    }
+    span{
+        font-family:"MapoFlowerIsland",serif;
+        }
+
+    .col-3:hover{
+        filter: brightness(90%);
+    }
+</style>
+{% endblock %}
+
+<!-- body 에 적을 내용은 여기에 적으세요. -->
+{% block content %}
+{%load static%}
+<div class="row" style="text-align: center; margin-top:8%;">
+    <div class="col">
+        <h2 style="color:#2e3131 "><strong><span><img src="{%static 'logo.png'%}" width="50px" height="50px" alt=""> 비밀번호 찾기</span></strong></h2>
+    </div>
+</div>
+<div class="container" style="margin-top: 5%;">
+    <div class="row fixed-top">
+        <div class="col">
+            <a href="{% url 'before_sign' %}"><h5><span><-뒤로가기 </span></h5></a>
+        </div>
+    </div>
+    <br>
+<div class="container">
+    <div class="row justify-content-md-center">
+        <div style="position: absolute; top: 45%; height: 504.18px; margin-top:-5.5%;">
+            <div class="card" style="width: 32rem;">
+                <div class="card-body">
+                    <div class="text-center">
+                    </div>
+                    <div class="row mt-5">
+                        <div class="col-12">
+                            
+                                {% csrf_token %}
+                                <!--아이디-->
+                                <div class="mb-4 md-form">
+                                    <medium class="form-text text-muted">
+                                        <span>아이디를 입력해주세요.</span>
+                                    </medium>
+                                    <input name="username" id="username" type="text">
+                                </div>
+
+                                <!--이메일-->
+                                <div class="mb-4 md-form">
+                                    <medium class="form-text text-muted">
+                                        <span>이메일을 입력해주세요.</span>
+                                    </medium>
+                                    <small>
+                                        <span style="color: red;">*</span><span>인증번호를 발송해드립니다.</span><span style="color: red;">*</span>
+                                    </small>
+                                    <br>
+                                    <input name="email" id="email" type="email">
+                                    
+                                    
+                                </div>
+                                <!--비밀번호찾기 버튼-->
+                                <div id="div_find_pw" style="padding-top:10px;" class="row justify-content-md-center">
+                                    <button id="find_pw" class="btn btn-red" style="opacity: 90%; font-size: 16px;"
+                                        name="recovery_pw"><i class="fas fa-search"></i>&nbsp;&nbsp;<span>비밀번호 찾기</span></button>
+                                </div>
+
+                                <div style="text-align: center; margin-top: 10px; margin-bottom: -10px;">
+                                    <div id="loading"></div>
+                                </div>
+                            
+                            <div id="result_pw">
+                                <hr>
+                                <div class="row justify-content-md-center">
+                                    <form class="form-inline" style="margin-bottom:-15px; margin-top:-10px;">
+                                        <div class="md-form md-outline"><label for="input_auth_num"><span>인증번호 입력</span> <span
+                                                    id="timeset"></span></label><input type="text" name="input_auth_num"
+                                                id="input_auth_num" class="form-control mx-sm-2" autofocus /></div>
+                                    </form>
+                                    <button type="submit" name="auth_confirm" id="id_auth_confirm" class="btn btn-red"
+                                        style="opacity: 90%; height:30%; margin-top:10px; font-size: 14px;"><i
+                                            class="fas fa-check"></i>&nbsp;&nbsp;<span>인증확인</span></button>
+        </div>
+    <hr>
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#find_pw').click(function () {
+            var username = $("#username").val();
+            var email = $("#email").val();
+            console.log(username,email)
+            $.ajax({
+                type: "POST",
+                url: "{% url 'ajax_pw' %}",
+                dataType: "json",
+                data: {
+                    'username': username,
+                    'email': email,
+                    'csrfmiddlewaretoken': '{{csrf_token}}',
+                },
+                success: function (response) {
+                    alert('회원님의 이메일로 인증코드를 발송하였습니다.');                 
+                    function countdown( elementName, minutes, seconds ) {
+                        var elementName, endTime, hours, mins, msLeft, time;
+                        function twoDigits( n ) {
+                            return (n <= 9 ? "0" + n : n);
+                        }
+                        function updateTimer() {
+                            msLeft = endTime - (+new Date);
+                            if ( msLeft < 1000 ) {
+                                alert("인증시간이 초과되었습니다.");
+                                $("" + elementName).remove();
+                                cert_ok = false;
+                                certificationNum = false;
+                                location.href = "{% url 'recovery_pw' %}"
+                            } else {
+                                time = new Date( msLeft );
+                                hours = time.getUTCHours();
+                                mins = time.getUTCMinutes();
+                                $("" + elementName).html((hours ? hours + ':' + twoDigits( mins ) : twoDigits(mins))
+                                + ':' + twoDigits( time.getUTCSeconds()));
+                                setTimeout( updateTimer, time.getUTCMilliseconds() + 500 );
+                            }
+                        }
+                        endTime = (+new Date) + 1000 * (60*minutes + seconds) + 500;
+                        updateTimer();
+                    }
+                    countdown("#timeset", 5, 0);
+
+                    var user = response.result
+                    console.log(user)
+                    $(document).ready(function () {
+                        $('#id_auth_confirm').click(function () {
+                            var input_auth_num = $("#input_auth_num").val();
+
+                            $.ajax({
+                                type: "POST",
+                                url: "{% url 'recovery_auth' %}",
+                                dataType: "json",
+                                data: {
+                                    'username': username,
+                                    'input_auth_num': input_auth_num,
+                                    'csrfmiddlewaretoken': '{{csrf_token}}',
+                                },
+                                success: function (response) {
+                                    // location.href = "/users/profile/password/";
+                                    location.href = "{% url 'reset_pw' %}";
+                                },
+                                error: function () {
+                                    if ($('#input_auth_num').val()=="") {
+                                        alert('회원님의 이메일로 전송된 인증번호를 입력해주세요.');
+                                    } else {
+                                        alert('인증번호가 일치하지 않습니다.');
+                                    }
+                                },
+                            });
+                        })
+                    })
+                },
+                error: function () {
+                    $('#loading_end').remove()
+                    if ( name == "" || email == "") {
+                        alert('아이디, 이름, 이메일을 모두 입력해주세요.');
+                    } else {
+                        alert('입력하신 정보가 일치하지 않거나 존재하지 않습니다.');
+                    }
+                },
+            });
+        })
+    });
+</script>
+{% endblock %}

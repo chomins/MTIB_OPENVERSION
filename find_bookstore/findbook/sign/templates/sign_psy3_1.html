@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% block head %}
+<style type="text/css">
+    /* 제목용 폰트 */
+    /* @font-face {
+        font-family: 'InfinitySans-BoldA1';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        
+    }
+    p{font-family:"InfinitySans-BoldA1",serif;} */
+
+    /* 본문용 폰트 */
+    @font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    }
+    span{font-family:"MapoFlowerIsland",serif;}
+</style>
+<script src="https://unpkg.com/swup@latest/dist/swup.min.js"></script>  
+{% endblock %}
+
+{% block content %}
+{%load static%}
+<style>
+body{
+/* background-image:url("https://pbs.twimg.com/media/DNHbqKqUQAA9Y_l.jpg"); */
+background-color:#e5dcf3;
+}
+</style>
+
+<br><br>
+<h2 style="text-align: center; color:#2e3131; font-weight:bold;"><span>당신의 서점은 무엇일까요?</span></h2>
+<br><br>
+<div class="container" style="text-align: center;">
+    <main id="swup" class="transition-fade">
+    <div class="row">
+        <div class="col">
+            <h5><span>동생들과 이야기를 하던 도중</span></h5>
+            <h5><span>한 친구가 신조어를 씁니다</span></h5><img src="{% static '짱구놀라기.jpg' %}" width="300px" height="200px" alt="">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col">
+            <h5><span>당신은 전혀 몰랐던 단어이며</span></h5> 
+            <h5><span>동생들이 의미를 알려주기 시작합니다.</span></h5>
+        </div>
+    </div>
+    <br><br><br>
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-4 input-group">
+            <!-- <button type="button" class="btn btn-outline-primary"><a href="{% url 'sign_psy2' %}"><h5>1. 카페인을 위해 커피 마시기</h5></a></button> -->
+            <a href="{% url 'tag_enjoy' %}" class="form-control" style="border-radius: 10px; background-color:#bd9fe7; color:white; font-family:MapoFlowerIsland;">1. 나중에 동년배들한테 써먹어야지</a>
+            <!-- 즐거움 -->
+        </div>
+        <div class="col-4 input-group">
+            <!-- <button type="button" class="btn btn-outline-primary"><a href="{% url 'sign_psy2_1' %}"><h5>2. 낮잠자기</h5></a></button> -->
+            <a href="{% url 'tag_cool' %}" class="form-control" style="border-radius: 10px; background-color:#bd9fe7; color:white; font-family:MapoFlowerIsland;">2. 요즘 친구들은 이러고 노는구나</a>
+            <!-- 쾌적한 -->
+        </div>
+    </div>
+<br>
+<br>
+    <div class="row">
+        <div class="col-2">
+            
+        </div>
+        <div class="col-4 input-group">
+            <!-- <button type="button" class="btn btn-outline-primary"><a href="{% url 'sign_psy2_2' %}"><h5>3. 전신 스트레칭 하기</h5></a></button> -->
+            <a href="{% url 'tag_enjoy' %}" class="form-control" style="border-radius: 10px; background-color:#bd9fe7; color:white; font-family:MapoFlowerIsland;">3. 우와~ 신기하다</a>
+            <!-- 즐거움 -->
+        </div>
+        <div class="col-4 input-group">
+            <!-- <button type="button" class="btn btn-outline-primary"><a href="{% url 'sign_psy2_3' %}"><h5>4. 간식거리를 챙기기</h5></a></button> -->
+            <a href="{% url 'tag_cool' %}" class="form-control" style="border-radius: 10px; background-color:#bd9fe7; color:white; font-family:MapoFlowerIsland;">4. 정말 재미있다ㅎ</a>
+            <!-- 쾌적한 -->
+        </div>
+    </div>
+</main>
+</div>
+    
+{% endblock %}

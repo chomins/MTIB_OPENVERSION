@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+
+
+<!-- head 에 적을 내용은 여기에 적으세요. -->
+{% block head %}
+<style type="text/css">
+    /* 제목용 폰트 */
+    /* @font-face {
+        font-family: 'InfinitySans-BoldA1';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        
+    }
+    p{font-family:"InfinitySans-BoldA1",serif;} */
+
+    /* 본문용 폰트 */
+    @font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    }
+    span{font-family:"MapoFlowerIsland",serif;}
+</style>
+
+{% endblock %}
+
+<!-- body 에 적을 내용은 여기에 적으세요. -->  
+
+{% block content %}
+{%load static%}
+<div class="container">
+    <form method="POST" action="{% url 'login' %}">
+    {% csrf_token %}
+    <div class="row" style="text-align: center; margin-top: 10%;">
+        <div class="col">
+            <img src="{%static 'logo.png'%}" width="100px" height="100px" alt=""><br><br>
+            <h2 style="color:#2e3131"><strong><span>당신만의 독립서점을 찾아보세요.</span></strong></h2>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col" style="color:#2e3131">
+            <p style="font-size: medium;"><span>ID</span></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            
+        </div>
+        <div class="col-6 input-group">
+            <input type="text" class="form-control" name="username">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-3">
+
+        </div>
+        <div class="col" style="color:#2e3131">
+            <p style="font-size: medium;"><span>Password</span></p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            
+        </div>
+        <div class="col-6 input-group">
+            <input type="password" class="form-control" name="password">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-3">
+            
+        </div>
+        <div class="col-6 input-group">
+            <input type="submit" class="form-control" style="border-radius: 40px; background-color: #d5b8ff; color: white; font-weight:bold; font-family:MapoFlowerIsland;" value="로그인">
+        </div>
+    </div>
+    <br>
+    <div class="row">
+        <div class="col-3">
+            
+        </div>
+        <div class="col-3 input-group">
+            <a href="{% url 'sign_up_check' %}" class="form-control" style="border-radius: 40px; color:#2e3131; text-align: center;"><span>회원가입</span></a>
+        </div>
+        <div class="col-3 input-group">
+            <a href="{% url 'before_search' %}" class="form-control" style="border-radius: 40px; color:#2e3131; text-align: center;"><span>ID/PW 찾기</span></a>
+        </div>
+    </div>
+    </form>
+</div>
+
+
+{% endblock %}
+
+
+    

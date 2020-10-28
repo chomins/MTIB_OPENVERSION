@@ -1,0 +1,128 @@
+{% extends 'base.html' %}
+
+
+<!-- head 에 적을 내용은 여기에 적으세요. -->
+{% block head %}
+
+{% endblock %}
+
+<!-- body 에 적을 내용은 여기에 적으세요. -->    
+{% block content %}
+    
+    <div class="container-fluid" style="padding-right: 10rem; padding-left: 10rem; padding-top: 5rem;">
+    
+        <nav class="navbar fixed-top navbar-light bg-white" id="navbar_section" style="background-color: white;" >
+            <div>
+            <a class="navbar-brand" href="{% url 'customer_notice' %}">LOGO</a>
+            </div>
+                <div style="text-align: right;">
+                    {% csrf_token %}
+                    {% if request.user.is_authenticated %}
+                    <a class="button is-right" href="#"><strong>마이페이지</strong></a>
+                    <a class="button is-right" href="#"><strong>로그아웃</strong></a>
+                    {% else %}     
+                    <a class="button is-right" href="#"><strong>로그인</strong></a>
+                    {% endif %}
+                </div>
+        </nav>
+
+        <div class="row">
+            <div class="col">
+                <div class="row pt-5 p-3 font-weight-bold" >
+                    <p class =" badge badge-primary text-wrap" style="background-color: #d5b8ff; font-size:xx-large;">
+                        THANKSBOOKS
+                </div>
+                <div class="row p-3">
+                    서점주소 서울 마포구 어디어디 어쩌구저쩌구 몇번지 5757번지
+                </div>
+                <div class="row p-3">
+                    <div class="col">
+                        <button type="button" class="btn btn-outline-secondary" style="border-color: #d5b8ff; border-radius: 20px; font-size: larger;" disabled>
+                        #태그1</button>
+                        &emsp13;
+                        <button type="button" class="btn btn-outline-secondary" style="border-color: #d5b8ff; border-radius: 20px; font-size: larger;" disabled>
+                        #태그2</button> 
+                        &emsp13;  
+                        <button type="button" class="btn btn-outline-secondary" style="border-color: #d5b8ff; border-radius: 20px; font-size: larger;" disabled>
+                        #태그3</button>         
+                    </div>
+                    
+                </div>
+                <div class="row" style="padding-top: 40px;">
+                    <div class="col-md-auto">
+                       <svg id="Layer_1" style="width: 100px;" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 77 77"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#d5b8ff;}</style></defs><title>CEO</title><path class="cls-1" d="M22.65,82.53V69a26.35,26.35,0,1,1,52.7,0V82.53Z" transform="translate(-11 -13)"/><path d="M49,43.6A25.38,25.38,0,0,1,74.35,69V81.53H23.65V69A25.38,25.38,0,0,1,49,43.6m0-2h0A27.35,27.35,0,0,0,21.65,69V83.53h54.7V69A27.35,27.35,0,0,0,49,41.6Z" transform="translate(-11 -13)"/><path class="cls-1" d="M49,46.18A16.09,16.09,0,1,1,65.09,30.09,16.1,16.1,0,0,1,49,46.18Z" transform="translate(-11 -13)"/><path d="M49,15A15.09,15.09,0,1,1,33.91,30.09,15.11,15.11,0,0,1,49,15m0-2A17.09,17.09,0,1,0,66.09,30.09,17.09,17.09,0,0,0,49,13Z" transform="translate(-11 -13)"/><rect class="cls-2" y="51" width="77" height="26" rx="5.63"/><path d="M36.86,74.13A5.2,5.2,0,0,0,39.41,79l-.95,1.25a5,5,0,0,1-2.39-3,5.3,5.3,0,0,1-2.56,3.18l-.94-1.29c1.86-.87,2.69-3,2.69-5v-1.6h1.6Zm6.19,3.11H41.44v5.48H39.86v-11h1.58v4.24h1.61Z" transform="translate(-11 -13)"/><path d="M49.66,77.91a4.08,4.08,0,0,1-2.53-2,4.29,4.29,0,0,1-2.66,2.39l-.79-1.24a3.56,3.56,0,0,0,2.6-3.38H44.09V72.41h6v1.27H47.9a3.18,3.18,0,0,0,2.52,3Zm3,2.68c0,1.34-1.44,2.13-3.73,2.13s-3.74-.79-3.74-2.13,1.44-2.16,3.74-2.16S52.65,79.23,52.65,80.59Zm-1.57,0c0-.64-.76-.94-2.16-.94s-2.17.3-2.17.94.75.92,2.17.92S51.08,81.21,51.08,80.59ZM54,74.22v1.29H52.53v2.73H51V71.68h1.58v2.54Z" transform="translate(-11 -13)"/><path d="M61.75,76.86a24.55,24.55,0,0,1-5.29.48h-1v-5h1.57V76a20.67,20.67,0,0,0,4.48-.46Zm-5,1.47H64v4.26H56.7Zm1.56,3h4.23V79.57H58.26ZM64,71.66v6.19H62.45V71.66Z" transform="translate(-11 -13)"/></svg>
+                    </div>
+                    <div class="col-md" style="position: static;
+                    background: #d5b8ff;
+                    color: white;
+                    padding: 13px;
+                    border-radius: 20rem;
+                    top: 135px;
+                    right: 15px;
+                    font-size: 11pt;
+                    z-index: -1;">
+                        
+                        <p class="text-center">우리 서점은요~ 귀여운 고양이 루시퍼가 주인장입니다,,~~*^^ 쓰다듬는건 싫어해요,,,^^*</p>
+                    </div>
+                </div>
+                <div class="row p-3">
+                    <div class="col pt-4">
+                        <h5 style="font-weight: bold;">베스트셀러</h5>
+                    </div>
+                </div>
+            
+                <div class="row p-3">
+                    {% for book in books %}
+                   <div class="col">
+                        <div class="card" style="width: 200px;">
+                            <img src="{{ book.img }}" class="card-img-top" alt="..."> 
+                            
+                            <div class="card-body">
+                              <p class="card-text">
+                                <h4>{{ book.title }}</h4>
+                                {{ book.reg_date }}<br>
+                                {{ book.author }}
+                              </p>
+                            </div>
+                          </div>
+                       
+                    </div>
+                    {% endfor %}
+                   
+                </div>
+            </div>
+            <div class="col">
+                <div class="row pt-5 p-3">
+                서점내부사진
+               
+                </div>
+            </div>
+        </div>
+
+        <div class="row pt-4 p-3">
+            <div class="col pt-4">
+                <button type="button" class="btn btn-light btn-block"  style="background-color: #d5b8ff;">
+                    <h5>NOTICE</h5> </button>
+               
+            </div>
+            <div class="col pt-4">
+                <button type="button" class="btn btn-outline btn-block"  style="border-color: #d5b8ff; color: #d5b8ff;">
+                    <h5><a href="{% url 'customer_review' %}">REVIEW</a></h5></button>
+                
+            </div>
+        </div>
+
+        <div class="row p-3">
+            <div class="col">
+                공지 1
+            </div>
+            <div class="col">
+                공지 2
+            </div>
+
+        </div>
+    </div>
+
+
+
+{% endblock %}

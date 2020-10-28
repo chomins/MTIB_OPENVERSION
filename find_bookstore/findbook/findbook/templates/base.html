@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/loading.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/home.css' %}" type="text/css">
+    <link rel="stylesheet" href="{% static 'css/mypage.css' %}" type="text/css">
+    <script defer src="{% static 'js/script.js' %}"></script>
+    <script defer src="{% static 'js/home.js' %}"></script>
+    <script defer src="{% static 'js/mypage.js' %}"></script>
+    <link href="{% static 'img/favicon.ico' %}" rel="icon">
+    <link href="{% static 'img/favicon.ico' %}" rel="shortcut icon">
+    <title>Findbookstore</title>
+    {% block head %}
+    <style type="text/css">
+        /* 제목용 폰트 */
+        /* @font-face {
+            font-family: 'InfinitySans-BoldA1';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+            
+        }
+        p{font-family:"InfinitySans-BoldA1",serif;} */
+    
+        /* 본문용 폰트 */
+        @font-face {
+        font-family: 'MapoFlowerIsland';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+    
+        }
+        span{
+            font-family:"MapoFlowerIsland",serif;
+            }
+    
+        .col-3:hover{
+            filter: brightness(90%);
+        }
+    </style>
+
+
+    {% endblock %}
+</head>
+
+<body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.4.2/gsap.min.js" integrity="sha512-pCPP9sfLW9T7EZiw725jUl+ux032sjGhFE+ZAx00C1iO55ZmZJWpfNGbDf2ZF5b0UqxRqSW548PbZEWmH+S7pA==" crossorigin="anonymous"></script>
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <div class="fixed-bottom" style="background-color:#d5b8ff; margin-bottom: 0px; "  >
+        <p style="text-align: center; color: white; margin-bottom: 0px;"><span>멋사 교내해커톤</span></p>
+    </div>
+
+
+
+</body>
+
+</html>

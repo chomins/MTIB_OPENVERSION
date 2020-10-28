@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+
+<!-- head 에 적을 내용은 여기에 적으세요. -->
+{% block head %}
+<style type="text/css">
+    /* 제목용 폰트 */
+    /* @font-face {
+        font-family: 'InfinitySans-BoldA1';
+        src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+        font-weight: normal;
+        font-style: normal;
+        
+    }
+    p{font-family:"InfinitySans-BoldA1",serif;} */
+
+    /* 본문용 폰트 */
+    @font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    }
+    span{
+        font-family:"MapoFlowerIsland",serif;
+        }
+
+    .col-3:hover{
+        filter: brightness(90%);
+    }
+</style>
+{% endblock %}
+
+<!-- body 에 적을 내용은 여기에 적으세요. -->    
+{% block content %}
+{%load static%}
+<div class="row" style="text-align: center; margin-top:8%;">
+    <div class="col">
+        <h2 style="color:#2e3131 "><strong><span><img src="{%static 'logo.png'%}" width="50px" height="50px" alt=""> 아이디 찾기</span></strong></h2>
+    </div>
+</div>
+<div class="container" style="margin-top: 5%;">
+    <div class="row fixed-top">
+        <div class="col">
+            <a href="{% url 'before_sign' %}"><h5><span><-뒤로가기 </span></h5></a>
+        </div>
+    </div>
+    <br>
+    {% csrf_token %}
+    <div class="row">
+        <div class="col-3">
+            
+        </div>
+        <div class="col-6 input-group">
+    <medium>
+        <span style="color: red;">*</span><span>등록하신 이메일주소가 일치해야 합니다.</span><span style="color: red;">*</span>
+    </medium>
+    <br>
+    <input type="email" id="form_email" placeholder="email을 입력하세요." class="input-group" name="email">
+    <br>
+    <br>
+        </div>
+    </div>
+    <br><br>
+    <div class="row">
+        <div class="col-3">
+            
+        </div>
+        <div class="col-6 input-group">
+        <button class="btn btn-outline-secondary btn-block" style="border-color: #d5b8ff; color: black; background-color: white; border-radius: 20px; font-size: larger;"id="find_id" name="recovery_id"><span>아이디 찾기</span></button>
+    </div>
+        </div>
+    
+
+    <div id="result_id"></div>  
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#find_id').click(function () {
+                
+                var email = $("#form_email").val();
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'ajax_find_id_view' %}",
+                    dataType: "json",
+                    data: {
+                        'email': email,
+                        'csrfmiddlewaretoken': '{{csrf_token}}',
+                    },
+                    success: function (response) {
+                        $('#result_id').replaceWith(
+                            '<div id="result_id"style="text-align:center;"><hr><div><span>USER ID:</span><span id="result_id">' +
+                                response.result_id +'</span><span></span></div><hr></div>')
+                    },
+                    error: function () {
+                        if (email == "") {
+                            alert('이름와 이메일을 입력해주세요.');
+                        } else {
+                            alert('입력하신 정보가 일치하지 않거나 존재하지 않습니다.');
+                        }
+                    },
+                });
+            })
+        });
+    </script>
+</div>
+
+{% endblock %}

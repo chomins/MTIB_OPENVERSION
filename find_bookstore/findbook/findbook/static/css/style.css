@@ -1,0 +1,57 @@
+/* 위에거 본문용 밑에거 타이틀용 폰트 */
+
+@font-face {
+  font-family: 'MapoFlowerIsland';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+} 
+ 
+@font-face {
+  font-family: 'InfinitySans-BoldA1';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/InfinitySans-BoldA1.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+        
+
+
+.transition-fade{
+    opacity: 1;
+    transition: 500ms;
+    transform: translateY(0);
+    transform-origin: top;
+}
+
+html.is-animating .transition-fade{
+    opacity: 1;
+    transform: translateY(100%);
+}
+
+html.is-leaving .transition-fade{
+    opacity: 0;
+    transform: translateY(0);
+}
+
+::-webkit-scrollbar{
+    height: 7px;
+    width: 6px;
+    background: white;
+  }
+::-webkit-scrollbar-thumb :horizontal{
+    background: #663399;
+    border-radius: 10px;
+  }
+
+  #slide_container {
+    white-space: nowrap;
+    vertical-align: middle;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    padding: 10px 10px 5px;
+    
+  }
+  #slide_container .container {
+    display: inline-block;
+    margin-left: 10px;
+  }

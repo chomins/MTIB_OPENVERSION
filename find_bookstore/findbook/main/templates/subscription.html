@@ -1,0 +1,814 @@
+{% extends 'base.html' %}
+
+
+<!-- head 에 적을 내용은 여기에 적으세요. -->
+{% block head %}
+
+<script src="https://kit.fontawesome.com/8b39985c80.js" crossorigin="anonymous"></script>
+
+<!-- include jQuery ++CYCLE -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+<script src="http://malsup.github.com/jquery.cycle2.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+<!-- reset.css -->
+<style>
+    html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+.clearfix:after{content:''; display:block; clear:both;}
+</style>
+<!-- 폰트임포트 -->
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;0,800;1,300;1,400;1,600;1,700;1,800&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+</style>
+<!-- 
+font-family: 'Roboto', sans-serif;
+font-family: 'Open Sans', sans-serif;  
+-->
+    
+
+<!-- css -->
+<style>
+
+/* 레이아웃 */
+
+
+.container_home{
+    width:1140px; 
+    margin:0 auto;
+}
+
+.main_content_home {
+    padding:81px 0 108px;
+}
+
+/* 타이포그래피 */
+
+body{
+    font:normal 18px/27px "MapoFlowerIsland",serif;
+    color:#2e2e2e;
+}
+
+.main_tt{
+    font:normal 40px/1 "InfinitySans-BoldA1",serif;
+    color:#fff;
+    letter-spacing:0.025em;
+    text-transform:uppercase;
+    font-weight:300;
+ 
+}
+
+.content_tt{
+    font: bold 32px/1 "MapoFlowerIsland",serif;
+    letter-spacing: 0.025em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 54px;
+}
+.content_sub_tt{
+    font:normal 23px/1 "MapoFlowerIsland",serif;
+}
+
+/* 마우스올릴때 색변화 폰트 */
+/* a {
+    font-style:italic;
+    color:#956DD0;
+    text-decoration:none;
+}
+a:hover {
+    text-decoration:underline;
+} */
+
+
+.btn_home{
+    padding:0 32px;
+    line-height: 54px;
+    border:1px solid #956DD0;
+    border-radius: 2px;
+    color: #956DD0;
+    letter-spacing: 0.1em;
+    font-weight: bold;
+    text-transform:uppercase;
+    display:inline-block;
+    text-decoration:none;
+    font-style:normal;
+    background:none;
+    transition:all 0.4s;
+}
+
+.btn_home:hover{
+    background:#956DD0;
+    color:#fff;
+}
+
+.banner_home {
+    position:relative;
+}
+
+.banner_list_home .slide_home{
+    background-repeat:no-repeat;
+    background-position:center top;
+    text-align:center;
+    box-sizing:border-box;
+}
+
+.slide_contents_home {
+    width:300px;
+    margin:0 auto;
+    color:#2e3131;
+    text-align:center;
+    /* margin-top:250px; */
+}
+.slide_contents_home p{
+    
+    margin-bottom:41px;
+}
+
+/* .slide_contents_home a{
+    margin:0 auto;
+    text-align:center;
+} */
+
+
+/* 팝업창 */
+
+input[id*="popup"] {
+    display:none;
+}
+input[id*="popup"] + label{
+    float:right;
+    display:inline-block;
+    padding:20px;
+    background:#ffcd41;
+    color:#fff;
+    cursor:pointer;
+    margin-right:10px;
+    border-radius:10% 10% 0 0;
+}
+
+input[id*="popup"] + label + div{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:100;
+} 
+
+input[id*="popup"] + label + div > div{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:700px;
+    height:500px;
+    background:#fff;
+    z-index:2;
+}
+
+input[id*="popup"] + label + div > div > label {
+    position:absolute;
+    top: 0%;
+    right: 0%;
+    transform:translate(40%,-40%);
+    padding:20px;
+    background:#d5b8ff;
+    border-radius:100%;
+    z-index:1;
+}
+
+input[id*="popup"] + label + div > label{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    z-index:1;
+}
+
+input[id*="popup"] + label + div{
+    opacity:0;
+    visibility:hidden;
+    transition:all 0.6s;
+}
+
+input[id*="popup"]:checked + label + div{
+    opacity:1;
+    visibility:visible;
+}
+
+/* 팝업2 */
+input[id*="popup2"] {
+    display:none;
+}
+input[id*="popup2"] + label{
+    display:inline-block;
+    margin:0px;
+    padding:0;
+    cursor:pointer;
+    text-decoration: none;
+    color: #2e3131;
+    font:normal 18px/1 "InfinitySans-BoldA1",serif;
+    float:right;
+    border:none;
+    background:none;
+}
+
+input[id*="popup2"] + label + div{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    z-index:100;
+} 
+
+input[id*="popup2"] + label + div > div{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:700px;
+    height:500px;
+    background:#fff;
+    z-index:2;
+}
+
+input[id*="popup2"] + label + div > div > label {
+    position:absolute;
+    top: 0%;
+    right: 0%;
+    transform:translate(40%,-40%);
+    padding:20px;
+    background:#d5b8ff;
+    border-radius:100%;
+    z-index:1;
+}
+
+input[id*="popup2"] + label + div > label{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    z-index:1;
+}
+
+input[id*="popup2"] + label + div{
+    opacity:0;
+    visibility:hidden;
+    transition:all 0.6s;
+}
+
+input[id*="popup2"]:checked + label + div{
+    opacity:1;
+    visibility:visible;
+}
+
+.out div img{
+    margin: 60px auto;
+    width:200px;
+    height:200px;
+    color:#d5b8ff;
+}
+
+.out div a{
+    margin: 0 auto;
+    text-align:center;
+    float:none;
+    /* color: ; */
+    font:bold 23px/1 "MapoFlowerIsland",serif;
+}
+
+.out div .no{
+    color:#2e3131;
+    margin-left:20px;
+    font:bold 23px/1 "MapoFlowerIsland",serif;
+}
+
+/* 팝업 공동 */
+
+.boxContainer{
+    margin:auto;
+    margin-top:5%;
+    position:relative;
+    width: 500px;
+    height: 60px;
+    border: 4px solid #ffcd41;
+    padding: 6px 10px;
+    border-radius: 50px;
+}
+
+.elementsContainer {
+    width:100%;
+    height: 100%;
+    vertical-align: middle;
+}
+
+
+
+/* 메뉴바 */
+
+input[id="menuicon"] {display:none;}
+input[id="menuicon"] + label {
+  display:block;
+  margin:30px;
+  width:60px;
+  height:50px;
+  position:fixed;
+  right:0;
+  top:calc(50% - 25px);
+  transition:all .35s;
+  cursor:pointer;
+}
+input[id="menuicon"] + label span {
+  display:block;
+  position:absolute;
+  width:100%;
+  height:5px;
+  border-radius:30px;
+  background:rgba(199,191,211,.8);
+  transition:all .35s;
+}
+input[id="menuicon"] + label span:nth-child(1) {
+  top:0;
+}
+input[id="menuicon"] + label span:nth-child(2) {
+  top:50%; transform:translateY(-50%);
+}
+input[id="menuicon"] + label span:nth-child(3) {
+  bottom:0;
+}
+input[id="menuicon"]:checked + label {
+  z-index:102;
+  right:300px;
+}
+input[id="menuicon"]:checked + label span {
+  background:rgba(199,191,211,.8);
+}
+input[id="menuicon"]:checked + label span:nth-child(1) {
+  top:50%;
+  transform:translateY(-50%) rotate(45deg);
+}
+input[id="menuicon"]:checked + label span:nth-child(2) {
+  opacity:0;
+}
+input[id="menuicon"]:checked + label span:nth-child(3) {
+  bottom:50%;
+  transform:translateY(50%) rotate(-45deg);
+}
+
+
+
+
+div[class="sidebar"] {
+  width:300px;
+  height:100%;
+  background:rgba(199,191,211,.8);
+  position:fixed;
+  top:0;
+  right:-300px;
+  z-index:103;
+  transition:all .35s;
+}
+input[id="menuicon"]:checked + label + div {
+  right:0;
+}
+
+.sidebar ul{
+    text-align:center;
+    margin: 120px 0;
+    margin-right: 40px;
+}
+.sidebar a{
+    text-decoration: none;
+    color: #2e3131;
+    font:normal 18px/1 "InfinitySans-BoldA1",serif;
+    float:right;
+}
+
+.sidebar li{
+    margin-top: 15px;
+}
+
+.sidebar li:nth-child(1){
+    margin-top: 0px;
+}
+
+.out a{
+    color:red;
+}
+
+
+/* HEADER */
+
+header {
+    background:rgba(255,255,255,.8);
+    position:fixed;
+    z-index:101;
+    left:0;
+    right:0;
+    padding:27px 0;
+}
+
+.logo_home{
+    float:left;
+}
+
+.logo_home a {
+    width:54px;
+    height:54px;
+    background:url("static/img/logo2.png") no-repeat;
+    text-indent:-9999em;
+    display:block;
+}
+
+nav {
+    float:right;
+}
+
+nav ul li {
+    float:left;
+    margin-left:27px;
+}
+
+nav ul li a {
+    color:#2e3131;
+    text-transform:uppercase;
+    text-decoration:none; 
+    font:normal bold 14px/54px "MapoFlowerIsland",serif;
+    letter-spacing:0.1em;
+}
+
+
+/* CONTENT (지움)*/
+
+/* 제목 */
+.test_title{
+    padding-top:220px;
+    margin:0 auto;
+    text-align:center;
+    font: bold 70px/54px "MapoFlowerIsland",serif;
+}
+
+.test_title h2{
+    font: normal 18px/54px "MapoFlowerIsland",serif;
+    color:#956DD0;
+}
+
+
+/* 책갈피 */
+
+.tab_content {
+    margin:0 auto;
+    border:0;
+    /* margin-bottom:180px; */
+    width:1140px;
+    padding-top:60px;
+    
+}
+
+.tab_content {
+  text-align:center;
+  justify-items: center;
+  /* font-size:0; */
+}
+input[type="radio"] {
+  display:none;
+} 
+
+input[type="radio"] + label {
+  display:inline-block;
+  padding:20px;
+  background:#f5f5f5;
+  color:#999;
+  font-size:14px;
+  cursor:pointer;
+  border-radius:45%;
+  transition :all 0.5s;
+  margin-left:15px;
+} 
+input[type="radio"]:nth-child(1){
+    margin-left:0px;
+}
+
+input[type="radio"]:checked + label {
+  background:#E2F4EE;
+  color:#000;
+} 
+
+.conbox {
+  margin:20px auto;
+  display:none;
+  box-sizing:border-box;
+  text-align:center;
+  margin-left:38%;
+  margin-bottom:60px;
+}
+
+
+input[id="tab01"]:checked ~ .con1 {display:block;}
+input[id="tab02"]:checked ~ .con2 {display:block;}
+input[id="tab03"]:checked ~ .con3 {display:block;}
+input[id="tab04"]:checked ~ .con4 {display:block;}
+input[id="tab05"]:checked ~ .con5 {display:block;}
+input[id="tab06"]:checked ~ .con6 {display:block;}
+
+
+.tag_book {
+    width:1100px;
+    margin:0 auto;
+}
+
+.tag_book li{
+    float:left;
+    width:260px;
+    margin-top:20px;
+    margin-left:20px; 
+}
+
+.tag_book li:nth-child(4n+1){
+    margin-left:0;
+}
+
+.tag_book li img {
+    width:100%;
+    
+}
+
+.tag_book p{
+    text-align:center;
+    justify-items: center;
+}
+
+.conbox{
+    text-align:center;
+    justify-items: center;
+}
+
+
+.explain{
+    margin:30px auto;
+    width:350px;
+
+}
+
+.explain ul{
+    float:left;
+    background-color:#ffcd41;
+}
+
+.howmuch{
+    margin-top:150px;
+    text-align:center;
+    font: bold 60px/54px "MapoFlowerIsland",serif;
+    color:#ffcd41;
+}
+
+
+
+/* FOOTER */
+
+#footer_home {
+    text-align:center;
+    margin:0 auto;
+    padding-top:100px;
+}
+
+#footer_home .fancy-box {
+    line-height:81px; padding:0 35px;
+}
+
+#footer_home .envelope_icon_home {
+    font-size:55px; color:#fff;
+}
+
+
+
+.subscribe_home form input[type="email"]::placeholder{
+    color:#989898;
+    font-style:italic;
+}
+
+.subscribe_home form input[type="submit"] {
+    vertical-align:bottom;
+}
+
+/* 인스타 페북 */
+
+footer .share_home{
+    margin:54px 0;
+    padding-bottom:30px;
+    margin-top:100px;
+}
+
+footer .share_home a{
+    background:#ACF2DB;
+    font-size:14px;
+    color:#fff;
+    border-radius:5px;
+    width:24px;
+    height:24px;
+    display:inline-block;
+    font-style:none;
+}
+
+footer .share_home a:hover{
+    background:#ebebeb;
+    color:#ACF2DB;
+}
+
+/* .footer .copy_home {
+    margin-bottom:50px;
+} */
+
+
+
+</style>
+
+
+
+
+{% endblock %}
+
+<!-- body 에 적을 내용은 여기에 적으세요. -->    
+{% block content %}
+
+
+
+
+
+
+<!-- 메뉴바 -->
+    <input type="checkbox" id="menuicon">
+    <label for="menuicon">
+        <span></span>
+        <span></span>
+        <span></span>
+    </label>
+    <div class="sidebar">
+        <ul>
+            <li>
+                <a href="{% url 'mypage' %}">마이페이지</a>
+            </li>
+            <br>
+            <li>
+                <a href="{% url 'customer_info' %}">회원정보</a>
+            </li>
+            <br>
+            <li>
+                <a href="{% url 'tag_result' %}">취향 분석 결과</a>
+            </li>
+            <br>
+            <li>
+                <a href="{% url 'my_reply' %}">내가 쓴 댓글</a>
+            </li>
+            <br>
+            <li>
+                <a href="{% url 'subscription' %}">정기구독 서비스</a>
+            </li>
+            <br>
+            <li class="out">
+                <input type="checkbox" id="popup2">
+                <label for="popup2">회원탈퇴</label>
+                <div>
+                    <div>
+                        <label for="popup2"></label>
+                        <img src="static\img\warning.svg">
+                        <br>
+                        <p>회원을 탈퇴하시겠습니까?</p>
+                        <br>
+                        <a href="{% url 'login' %}">네</a>
+                        <a class="no" href="{% url 'mypage' %}">아니오</a>
+                    </div>
+                <label for="popup2"></label>
+            </li>
+        </ul>
+    </div>
+
+
+    <!-- header -->
+    <header>
+        <div class = "container_home clearfix">
+            <h1 class="logo_home">
+                <a href="{% url 'home' %}">Logo</a>
+            </h1>
+            <nav>
+                <ul class="clearfix">
+                    <li><a>{{username}}</a></li>
+                    <li><a href="{% url 'home' %}">홈</a></li>
+                    <li><a href="{% url 'login' %}">로그아웃</a></li>
+                    
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <!-- header -->
+    <!-- 
+        둘이같음
+        data-cycle-slides="> li"
+        data-cycle-slides=".classname"
+    -->
+    <!-- banner -->
+    
+    <!-- banner -->
+
+    <!-- main content -->
+    
+    <!-- 내용 제목 -->
+    <div class="test_title">
+        <p>
+            정기구독
+        </p>
+        <h2>남들과는 다른 나만의 서점이용법</h2>
+    </div>
+    <!-- 내용 제목 -->
+    
+    <!-- 컨텐츠 -->
+    <div class="explain">
+        <ul>
+            
+            <li>
+                <p>1. 한달에 3번 독립서점에서 웰컴 드링크 제공</p>
+            </li>
+            <br>
+            <li>
+                <p>2. 책 구매시 5% 할인</p>
+            </li>
+            <br>
+            <li>
+                <p>3. 1% 추가적립</p>
+            </li>
+            
+        </ul>
+        <br>
+        <p class="howmuch">9,900원</p>
+    </div>
+
+
+
+    <!-- 책갈피 -->
+    <br>
+    <div class="slide_contents_home">
+        <a href="#" class="btn_home">구독하기</a>
+    </div>
+
+
+    <!-- main content -->
+    <!-- footer -->
+
+
+    <footer id="footer_home">
+        <p class="share_home">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+        </p>
+    </footer>
+    <!-- footer -->
+
+{% endblock %}

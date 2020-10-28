@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+
+
+<!-- head 에 적을 내용은 여기에 적으세요. -->
+{% block head %}
+<style>
+    html, body {
+  height: 100%;
+}
+
+.wrap {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button {
+  min-width: 600px;
+  min-height: 120px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 22px;
+  text-transform: uppercase;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color:#2e3131;
+  background: #edd0fd;
+  background: linear-gradient(90deg, #faec6e 0%, #edd0fd 100%);
+  border: none;
+  border-radius: 1000px;
+  box-shadow: 12px 12px 24px #f7f1fd;
+  transition: all 0.3s ease-in-out 0s;
+  cursor: pointer;
+  outline: none;
+  position: relative;
+  padding: 10px;
+  }
+
+button::before {
+content: '';
+  border-radius: 2000px;
+  min-width: calc(600px + 12px);
+  min-height: calc(120px + 12px);
+  border: 5px solid #e9d8fa;
+  box-shadow: 0 0 60px #e9d8fa;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: all .3s ease-in-out 0s;
+}
+
+.button:hover, .button:focus {
+  color: #2e3131;
+  transform: translateY(-6px);
+}
+
+button:hover::before, button:focus::before {
+  opacity: 1;
+}
+
+button::after {
+  content: '';
+  width: 30px; height: 30px;
+  border-radius: 100%;
+  border: 6px solid #faec6e;
+  position: absolute;
+  z-index: -1;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: ring 1.5s infinite;
+}
+
+button:hover::after, button:focus::after {
+  animation: none;
+  display: none;
+}
+
+@keyframes ring {
+  0% {
+    width: 30px;
+    height: 30px;
+    opacity: 1;
+  }
+  100% {
+    width: 900px;
+    height: 900px;
+    opacity: 0;
+  }
+}
+
+@font-face {
+    font-family: 'MapoFlowerIsland';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoFlowerIslandA.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+    }
+    span{font-family:"MapoFlowerIsland",serif;}
+</style>
+{% endblock %}
+
+<!-- body 에 적을 내용은 여기에 적으세요. -->    
+{% block content %}
+<div class="wrap">
+    <!-- <h3>시원한, 넓직한, 평화로운</h3> -->
+    <a style="color: #2e3131;" href="{% url 'recommend_store' %}"><button class="button">
+        <span>당신은 </span><span style="font-size:x-large; font-weight: bolder; font-style: italic;">여유로운 분위기</span><span>를 추구하는 사람이군요</span>
+        <br>
+        <span>과연 어떤 서점이 당신을 기다리고 있을까요?</span>
+    </button></button></a>
+</div>
+
+{% endblock %}
